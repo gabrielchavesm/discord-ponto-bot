@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-IMAGE="ghcr.io/mariogranaci/discord-ponto-bot"
+IMAGE="ghcr.io/gabrielchavesm/discord-ponto-bot"
 SERVICE="discord-bot"
 CONTAINER="discord-ponto-bot"
 

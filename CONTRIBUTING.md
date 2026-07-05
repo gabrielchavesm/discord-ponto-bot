@@ -87,8 +87,8 @@ O ficheiro `.github/workflows/cicd.yml` define uma pipeline automática que é e
 2. **Job `build-and-push`** (depende do job `test`)
    - Constrói uma imagem Docker multi‑arquitetura (linux/amd64 e linux/arm64)
    - Publica a imagem no **GitHub Container Registry (GHCR)** com duas tags:
-     - `ghcr.io/mariogranaci/discord-ponto-bot:<sha-do-commit>`
-     - `ghcr.io/mariogranaci/discord-ponto-bot:latest`
+     - `ghcr.io/gabrielchavesm/discord-ponto-bot:<sha-do-commit>`
+     - `ghcr.io/gabrielchavesm/discord-ponto-bot:latest`
    - Para tal, usa as permissões `contents: read` e `packages: write`
 
 3. **Job `security-scan`** (depende do job `build-and-push`)
@@ -131,7 +131,7 @@ O ficheiro `docker-compose.yml` orquestra dois serviços:
 
 ### Configurações do ficheiro
 
-- **Imagem pré‑construída**: É usado `image: ghcr.io/mariogranaci/discord-ponto-bot:latest`. Isto acelera o arranque porque não é necessário compilar a imagem localmente.
+- **Imagem pré‑construída**: É usado `image: ghcr.io/gabrielchavesm/discord-ponto-bot:latest`. Isto acelera o arranque porque não é necessário compilar a imagem localmente.
 - **Healthcheck na base de dados**: o serviço `db` tem uma verificação de saúde (`pg_isready`) para garantir que o PostgreSQL está pronto antes de o bot tentar ligar-se.
 - **Dependência condicional**:
 
@@ -209,8 +209,8 @@ O processo de deploy (atualização do bot) é totalmente automatizado via **Git
 1. **Testes unitários** – com `pytest` e relatório de cobertura.
 2. **Build da imagem Docker** multi‑arquitetura (linux/amd64 e linux/arm64).
 3. **Push da imagem** para o **GitHub Container Registry (GHCR)** com as tags:
-   - `ghcr.io/mariogranaci/discord-ponto-bot:<sha-do-commit>`
-   - `ghcr.io/mariogranaci/discord-ponto-bot:latest`
+   - `ghcr.io/gabrielchavesm/discord-ponto-bot:<sha-do-commit>`
+   - `ghcr.io/gabrielchavesm/discord-ponto-bot:latest`
 4. **Job `deploy`** – conecta‑se via SSH à VPS (usando as secrets `VPS_HOST`, `VPS_USER` e `VPS_SSH_KEY`) e executa o script `start.sh`.
 ---
 ### O script start.sh
@@ -234,7 +234,7 @@ O script também configura automaticamente o **backup semanal** (via cron) – d
 #!/bin/bash
 set -e
 
-IMAGE="ghcr.io/mariogranaci/discord-ponto-bot"
+IMAGE="ghcr.io/gabrielchavesm/discord-ponto-bot"
 SERVICE="discord-bot"
 CONTAINER="discord-ponto-bot"
 

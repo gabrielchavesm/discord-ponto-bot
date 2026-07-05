@@ -1,6 +1,6 @@
 services:
   discord-bot:
-    image: ghcr.io/mariogranaci/discord-ponto-bot:latest
+    image: ghcr.io/gabrielchavesm/discord-ponto-bot:latest
     container_name: discord-ponto-bot
     restart: always
     volumes:
