@@ -1,0 +1,27 @@
+services:
+  discord-bot:
+    image: ghcr.io/mariogranaci/discord-ponto-bot:latest
+    container_name: discord-ponto-bot
+    restart: always
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:18.1
+    container_name: discord-ponto-db
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./data/postgres:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s

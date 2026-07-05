@@ -1,0 +1,7 @@
+.env
+/data
+TODO.txt
+reset_docker.sh
+__pycache__
+/tests/__pycache__
+/tests/.pytest_cache
