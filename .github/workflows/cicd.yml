@@ -121,7 +121,7 @@ jobs:
         run: docker pull ${{ needs.build-and-push.outputs.image }}
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.23.0
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ needs.build-and-push.outputs.image }}
           format: 'sarif'
